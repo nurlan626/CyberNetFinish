@@ -1,23 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { useEffect, useState } from 'react'
 
 function App() {
+  const [data, setData] = useState([]);
+  const [filter, setFilter] = useState(data);
+  const [theme, setTheme] = useState(true);
+
+
+  const changeTheme =  () => {
+    setTheme(!theme)
+    
+  }
+
+
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const response = await fetch("https://cybernet.az/demo.php");
+      setData(await response.clone().json());
+      setFilter(await response.json());
+      console.log(filter);
+
+
+    };
+
+    getProducts();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={changeTheme} >
+        Change theme</button>
+
+
+      {filter.map((DataItem) => {
+        return (
+          <div className='boxDark'>
+            <div>Title:{DataItem.title}</div>
+            <div>Style:{DataItem.style}</div>
+            <div>Price:{DataItem.price}</div>
+            <div>Description:{DataItem.description}</div>
+            <div>Free shippng:{DataItem.isFreeShipping}</div>
+            <button>Add</button>
+            <hr></hr>
+
+          </div>
+        );
+      })}
+
     </div>
   );
 }
