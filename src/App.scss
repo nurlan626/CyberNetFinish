@@ -6,3 +6,15 @@
   background-color: rgb(49, 49, 49);
   color: white;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.products {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
