@@ -57,7 +57,7 @@ function App() {
         }).map((DataItem) => {
           return (
             <div className={theme ? "boxLight" : "boxDark"} key={DataItem.id}>
-              <div>Title:{DataItem.title}</div>
+              <h3>Title:{DataItem.title}</h3>
               <div>Style:{DataItem.style}</div>
               <div>Price:{DataItem.price}</div>
               <div>Description:{DataItem.description}</div>
@@ -68,6 +68,8 @@ function App() {
             </div>
           );
         })}
+
+
 
       </div>
 
